@@ -1,0 +1,248 @@
+/* GERAL E VARIÁVEIS DE COR */
+:root {
+    --yellow: #FEE85D;
+    --pink: #FEA7C3;
+    --orange: #FABE83;
+    --red: #E63C41;
+    --teal: #A0E4E3;
+    --white: #FFFFFF;
+    --dark-text: #333;
+    --font-title: 'Fredoka', sans-serif;
+    --font-body: 'Nunito', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--yellow);
+    color: var(--dark-text);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.screen {
+    display: none;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+}
+
+.screen.active {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* TELA DE LOGIN */
+.login-container {
+    text-align: center;
+    background-color: var(--white);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    max-width: 400px;
+}
+
+.login-container .logo {
+    max-width: 200px;
+    margin-bottom: 20px;
+}
+
+.login-container h1 {
+    font-family: var(--font-title);
+    color: var(--pink);
+    margin-bottom: 10px;
+}
+
+#login-btn {
+    background-color: var(--white);
+    color: var(--dark-text);
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+#login-btn:hover {
+    background-color: #f7f7f7;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* TELA DA CARTILHA */
+#pamphlet-screen {
+    justify-content: flex-start;
+    padding-top: 50px;
+}
+
+.pamphlet-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    perspective: 2000px;
+}
+
+.pamphlet-section {
+    background-color: var(--white);
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transform-style: preserve-3d;
+    transition: transform 0.8s, opacity 0.5s;
+    transform-origin: center;
+    cursor: pointer;
+}
+
+.pamphlet-section img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Animação de desdobramento */
+.pamphlet-section.folded {
+    transform: scale(0);
+    opacity: 0;
+}
+
+.pamphlet-section.is-opening {
+    transform: scale(1);
+    opacity: 1;
+}
+
+#start-quiz-btn {
+    background-color: var(--red);
+    color: var(--white);
+    font-family: var(--font-title);
+    font-size: 20px;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-top: 30px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+    transition: transform 0.2s, background-color 0.2s;
+    transform: scale(0);
+    animation: pop-in 0.5s forwards;
+    animation-delay: 1s; /* Delay for button to appear after last fold */
+}
+
+@keyframes pop-in {
+    to {
+        transform: scale(1);
+    }
+}
+
+#start-quiz-btn.hidden {
+    display: none;
+}
+
+#start-quiz-btn:hover {
+    transform: scale(1.05);
+    background-color: #d13035;
+}
+
+/* TELA DO QUIZ */
+.quiz-container {
+    width: 100%;
+    max-width: 800px;
+    background-color: var(--white);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+#question-container h2 {
+    font-family: var(--font-title);
+    color: var(--pink);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.btn-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+}
+
+.btn-answer {
+    background-color: var(--teal);
+    border: 2px solid var(--teal);
+    border-radius: 10px;
+    padding: 15px;
+    color: var(--dark-text);
+    font-size: 16px;
+    font-family: var(--font-body);
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-answer:hover {
+    background-color: #8cd4d3;
+}
+
+.btn-answer.correct {
+    background-color: #28a745;
+    color: white;
+    border-color: #28a745;
+}
+
+.btn-answer.wrong {
+    background-color: var(--red);
+    color: white;
+    border-color: var(--red);
+}
+
+#quiz-results {
+    text-align: center;
+}
+
+#score-text {
+    font-size: 24px;
+    margin: 20px 0;
+    font-weight: bold;
+}
+
+#restart-quiz-btn {
+    background-color: var(--pink);
+    color: var(--white);
+    padding: 12px 24px;
+    border-radius: 8px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 768px) {
+    .pamphlet-container {
+        grid-template-columns: 1fr;
+    }
+    .login-container {
+        padding: 20px;
+        margin: 0 10px;
+    }
+    .quiz-container {
+        padding: 20px;
+    }
+}
